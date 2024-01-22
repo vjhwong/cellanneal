@@ -32,15 +32,12 @@ rcParams["axes.prop_cycle"] = cycler(
 )
 
 
-def plot_pies(mix_df, save_path=None, title=None):
+def plot_pies(mix_df, save_path=None, title="Title"):
     # for each mixture, plot a pie chart
     plot_num = np.shape(mix_df)[0] + 1
     fig, axes = subplots(
         int(np.ceil(plot_num / 4)), 4, figsize=(12, 3 * np.ceil(plot_num / 4))
     )
-
-    if title is not None:
-        fig.suptitle(title, fontsize=16)
 
     # if correlation values are included in the mix_df,
     # they should not be part of the pie
@@ -71,6 +68,7 @@ def plot_pies(mix_df, save_path=None, title=None):
     lax.legend(
         pie[0], plot_df.columns, loc="lower center", ncol=2, bbox_to_anchor=(0.7, 0)
     )
+    fig.suptitle(title, fontsize=16)
     if save_path is not None:
         savefig(save_path, bbox_inches="tight")
 
